@@ -53,7 +53,4 @@ flowchart TD
     Cart --> Postgres
     Order --> Postgres
     Shipping --> Postgres
-
-    Shipping --> Cosmos
-    Order --> Cosmos
 ```
