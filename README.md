@@ -21,63 +21,28 @@ Cloud Native Commerce & Fulfillment Platform
 
 SouqFlow -Architecture Diagrams 
 
-V1 (Modular Monolith)
-┌──────────────┐
-│   Customer   │
-└──────┬───────┘
-       │
-       ▼
+## SouqFlow V1 Architecture
 
-┌──────────────────────────────┐
-│         Angular SPA          │
-│                              │
-│ Product Catalog              │
-│ Cart                         │
-│ Checkout                     │
-│ Orders                       │
-│ Shipment Tracking            │
-└──────────────┬───────────────┘
-               │ HTTPS
-               ▼
+```mermaid
+flowchart TD
 
-┌──────────────────────────────┐
-│ Azure API Management         │
-│                              │
-│ API Gateway                  │
-│ Rate Limiting                │
-│ Authentication               │
-└──────────────┬───────────────┘
-               │
-               ▼
+    Customer[Customer]
 
-┌───────────────────────────────────────────┐
-│             SouqFlow API                  │
-│                 .NET 8                    │
-│                                           │
-│ ┌───────────────────────────────────────┐ │
-│ │ Identity Module                       │ │
-│ ├───────────────────────────────────────┤ │
-│ │ Product Module                        │ │
-│ ├───────────────────────────────────────┤ │
-│ │ Cart Module                           │ │
-│ ├───────────────────────────────────────┤ │
-│ │ Order Module                          │ │
-│ ├───────────────────────────────────────┤ │
-│ │ Shipping Module                       │ │
-│ └───────────────────────────────────────┘ │
-└──────────────┬────────────────────────────┘
-               │
-               ▼
+    Angular[Angular SPA<br/>Product Catalog<br/>Cart<br/>Checkout<br/>Orders<br/>Shipment Tracking]
 
-┌──────────────────────────────┐
-│ Azure PostgreSQL             │
-│ Flexible Server              │
-│                              │
-│ Schemas                      │
-│ ├── identity                 │
-│ ├── product                  │
-│ ├── order                    │
-│ └── shipping                 │
-└──────────────────────────────┘
+    APIM[Azure API Management<br/>API Gateway<br/>Authentication<br/>Rate Limiting]
+
+    API[SouqFlow API (.NET 8)<br/>Identity Module<br/>Product Module<br/>Cart Module<br/>Order Module<br/>Shipping Module]
+
+    Postgres[(Azure PostgreSQL<br/>Flexible Server<br/>Schemas:<br/>identity<br/>product<br/>order<br/>shipping)]
+
+    Cosmos[(Azure Cosmos DB<br/>Shipment Events<br/>User Activity<br/>Product Views)]
+
+    Customer --> Angular
+    Angular --> APIM
+    APIM --> API
+    API --> Postgres
+    API --> Cosmos
+```
 
 
