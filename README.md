@@ -28,21 +28,32 @@ flowchart TD
 
     Customer[Customer]
 
-    Angular[Angular SPA<br/>Product Catalog<br/>Cart<br/>Checkout<br/>Orders<br/>Shipment Tracking]
+    Angular[Angular SPA]
 
-    APIM[Azure API Management<br/>API Gateway<br/>Authentication<br/>Rate Limiting]
+    APIM[Azure API Management]
 
-    API[SouqFlow API (.NET 8)<br/>Identity Module<br/>Product Module<br/>Cart Module<br/>Order Module<br/>Shipping Module]
+    subgraph SouqFlow["SouqFlow API (.NET 8)"]
+        Identity[Identity Module]
+        Product[Product Module]
+        Cart[Cart Module]
+        Order[Order Module]
+        Shipping[Shipping Module]
+    end
 
-    Postgres[(Azure PostgreSQL<br/>Flexible Server<br/>Schemas:<br/>identity<br/>product<br/>order<br/>shipping)]
+    Postgres[Azure PostgreSQL Flexible Server]
 
-    Cosmos[(Azure Cosmos DB<br/>Shipment Events<br/>User Activity<br/>Product Views)]
+    Cosmos[Azure Cosmos DB]
 
     Customer --> Angular
     Angular --> APIM
-    APIM --> API
-    API --> Postgres
-    API --> Cosmos
+    APIM --> Identity
+
+    Identity --> Postgres
+    Product --> Postgres
+    Cart --> Postgres
+    Order --> Postgres
+    Shipping --> Postgres
+
+    Shipping --> Cosmos
+    Order --> Cosmos
 ```
-
-
