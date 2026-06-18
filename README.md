@@ -42,8 +42,6 @@ flowchart TD
 
     Postgres[Azure PostgreSQL Flexible Server]
 
-    Cosmos[Azure Cosmos DB]
-
     Customer --> Angular
     Angular --> APIM
     APIM --> Identity
