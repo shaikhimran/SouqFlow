@@ -1,0 +1,68 @@
+<!-- Announcement bar -->
+<div class="w-full bg-navy text-offwhite">
+  <p class="mx-auto max-w-7xl px-4 py-2 text-center text-[11px] font-500 uppercase tracking-[0.2em] sm:px-6 lg:px-8">
+    Complimentary shipping · Authentic &amp; sealed · 100% genuine
+  </p>
+</div>
+
+<header class="sticky top-0 z-30 w-full border-b border-navy/10 bg-offwhite/85 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <!-- Brand -->
+    <a routerLink="/" class="flex items-center gap-2.5">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald text-gold">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M12 2l2.4 2.4L12 6.8 9.6 4.4 12 2zM4.4 9.6L6.8 12l-2.4 2.4L2 12l2.4-2.4zM19.6 9.6L22 12l-2.4 2.4L17.2 12l2.4-2.4zM12 17.2l2.4 2.4L12 22l-2.4-2.4 2.4-2.4z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      </span>
+      <span class="font-display text-xl font-700 tracking-tight text-navy">Souq<span class="text-emerald">Flow</span></span>
+    </a>
+
+    <!-- Center nav (desktop) -->
+    <ul class="hidden items-center gap-10 text-xs font-600 uppercase tracking-[0.15em] text-navy/70 md:flex">
+      <li><a href="#" class="transition hover:text-emerald">Shop</a></li>
+      <li><a href="#" class="transition hover:text-emerald">Collection</a></li>
+      <li><a href="#" class="transition hover:text-emerald">Our Story</a></li>
+    </ul>
+
+    <!-- Right controls -->
+    <div class="flex items-center gap-4">
+      <!-- search icon -->
+      <button type="button" aria-label="Search" class="text-navy/70 transition hover:text-emerald">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- account / auth -->
+      @if (auth.isLoggedIn()) {
+        <span class="hidden h-8 w-8 items-center justify-center rounded-full bg-emerald/10 text-sm font-600 text-emerald sm:flex">
+          {{ auth.userName().charAt(0) }}
+        </span>
+        <button
+          type="button"
+          (click)="auth.logout()"
+          class="text-xs font-600 uppercase tracking-[0.15em] text-emerald transition hover:text-navy">
+          Logout
+        </button>
+      } @else {
+        <a
+          routerLink="/login"
+          aria-label="Account"
+          class="text-navy/70 transition hover:text-emerald">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke-linecap="round" />
+          </svg>
+        </a>
+      }
+
+      <!-- bag -->
+      <button type="button" aria-label="Shopping bag" class="relative text-navy/70 transition hover:text-emerald">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-linecap="round" />
+        </svg>
+        <span class="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[10px] font-700 text-navy">1</span>
+      </button>
+    </div>
+  </nav>
+</header>

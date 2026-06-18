@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+/* ── SouqFlow brand theme tokens ─────────────────────────────────────────── */
+@theme {
+  --color-emerald: #0f766e;
+  --color-emerald-dark: #0b5a54;
+  --color-emerald-light: #14b8a6;
+  --color-gold: #d4af37;
+  --color-gold-soft: #e6c860;
+  --color-navy: #0f172a;
+  --color-offwhite: #f8faf9;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Poppins", "Inter", system-ui, sans-serif;
+}
+
+/* Base */
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--color-offwhite);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
